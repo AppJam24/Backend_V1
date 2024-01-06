@@ -10,7 +10,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class SignInDto {
     private String userId;
-    private String name;
     private String password;
 
     public User toEntity() {

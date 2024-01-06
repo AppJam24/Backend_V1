@@ -15,8 +15,8 @@ public class UserService {
     private final UserRepository userRepository;
 
     @Transactional
-    public String signIn(SignInDto signInDto) {
-        return userRepository.save(signInDto.toEntity()).getUserId();
+    public void signIn(SignInDto signInDto) {
+        userRepository.save(signInDto.toEntity());
     }
 
     @Transactional
