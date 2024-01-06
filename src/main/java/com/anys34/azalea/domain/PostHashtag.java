@@ -1,23 +1,19 @@
 package com.anys34.azalea.domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
-@Getter
-@NoArgsConstructor
 @Entity
-public class PostTag {
+@Table(name = "post_hashtag")
+public class PostHashtag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "postId")
+    @JoinColumn(name = "post_id")
     private Post post;
 
     @ManyToOne
-    @JoinColumn(name = "tagId")
-    private Tag tag;
+    @JoinColumn(name = "hashtag_id")
+    private Hashtag hashtag;
 }
-

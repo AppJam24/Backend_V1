@@ -4,6 +4,6 @@ import com.anys34.azalea.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    User findByUserIdAndPassword(String userId, String password);
-    User findByUserId(String userId);
+    User findByUsernameAndPassword(String username, String password);
+    User findByUsername(String username);
 }

@@ -8,20 +8,18 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Comment {
+@Table(name = "comments")
+public class Comment extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long commentId;
+    private Long id;
 
-    @Column
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "postId")
-    private Post post;
+    private User commenter;
 
     @ManyToOne
-    @JoinColumn(name = "userId")
-    private User user;
+    private Post post;
 }
 

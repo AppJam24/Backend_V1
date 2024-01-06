@@ -35,10 +35,10 @@ public class UserApiController {
     @PostMapping("/signin")
     public ResponseEntity<String> signIn(@RequestBody SignInDto signInDto) throws NoSuchAlgorithmException {
         // 예외 처리
-        if(signInDto.getUserId().isEmpty()) return ResponseEntity.badRequest().body("아이디가 비어있습니다.");
+        if(signInDto.getUsername().isEmpty()) return ResponseEntity.badRequest().body("아이디가 비어있습니다.");
         if(signInDto.getPassword().isEmpty()) return ResponseEntity.badRequest().body("비밀번호가 비어있습니다.");
-        if(signInDto.getUserId().length() > 25) return ResponseEntity.badRequest().body("유저 아이디가 25글자를 넘으면 안됩니다.");
-        if(userService.checkUserId(signInDto.getUserId())) return ResponseEntity.badRequest().body("같은 아이디가 있습니다.");
+        if(signInDto.getUsername().length() > 25) return ResponseEntity.badRequest().body("유저 아이디가 25글자를 넘으면 안됩니다.");
+        if(userService.checkUserId(signInDto.getUsername())) return ResponseEntity.badRequest().body("같은 아이디가 있습니다.");
 
         try {
             // 비밀번호 암호화
@@ -74,7 +74,7 @@ public class UserApiController {
                 // 세션에 회원 저장
                 try {
                     HttpSession session = request.getSession();
-                    session.setAttribute("user", user.getUserId());
+                    session.setAttribute("user", user.getUsername());
                 } catch (NullPointerException e) {
                     e.printStackTrace();
                 }
@@ -110,7 +110,7 @@ public class UserApiController {
                 User user = userService.select(id);
 
                 UserInfoDto userInfo = UserInfoDto.builder()
-                        .userId(user.getUserId())
+                        .userId(user.getUsername())
                         .build();
 
                 return userInfo;

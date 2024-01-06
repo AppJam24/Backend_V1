@@ -1,18 +1,18 @@
 package com.anys34.azalea.domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Getter
-@NoArgsConstructor
+@Setter
 @Entity
-public class Tag {
+@Table(name = "hashtag")
+public class Hashtag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tagId;
+    private Long id;
 
-    @Column
     private String name;
 }
+
+
 

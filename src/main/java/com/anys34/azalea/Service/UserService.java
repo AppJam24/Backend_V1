@@ -23,7 +23,7 @@ public class UserService {
     public Pair<User, Boolean> login(LoginDto loginDto) {
         String userId = loginDto.getUserId();
         String password = loginDto.getPassword();
-        User user = userRepository.findByUserIdAndPassword(userId, password);
+        User user = userRepository.findByUsernameAndPassword(userId, password);
 
         if (user != null) return Pair.of(user, true);
         if (user == null) return Pair.of(user, false);
@@ -38,6 +38,6 @@ public class UserService {
 
     @Transactional
     public Boolean checkUserId(String userId) {
-        return userRepository.findByUserId(userId) != null;
+        return userRepository.findByUsername(userId) != null;
     }
 }

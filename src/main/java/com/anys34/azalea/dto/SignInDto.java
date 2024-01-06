@@ -9,12 +9,12 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class SignInDto {
-    private String userId;
+    private String username;
     private String password;
 
     public User toEntity() {
         return User.builder()
-                .userId(userId)
+                .username(username)
                 .password(password)
                 .build();
     }

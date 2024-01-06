@@ -1,29 +1,31 @@
 package com.anys34.azalea.domain;
 
-import com.anys34.azalea.BaseTimeEntity;
 import jakarta.persistence.*;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Getter
+import java.util.List;
+
+@Setter
 @NoArgsConstructor
 @Entity
+@Table(name = "post")
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long postId;
+    private Long id;
 
-    @Column
-    private String content;
-
-    @Column
     private String title;
 
-    @Column
-    private Long hits;
+    private String content;
 
-    @ManyToOne
-    @JoinColumn(name = "userId")
-    private User user;
+    @ManyToMany
+    @JoinTable(
+            name = "post_hashtag",
+            joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "hashtag_id")
+    )
+    private List<Hashtag> hashtags;
 }
+
 
